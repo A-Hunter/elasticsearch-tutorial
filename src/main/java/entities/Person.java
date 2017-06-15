@@ -15,8 +15,14 @@ public class Person {
     private String occupation;
     private String address;
 
+    Map<String, Object> attributes = new HashMap<>();
+
     public Person() {
         super();
+    }
+
+    public Person(Map<String, Object> attributes){
+        this.attributes = attributes;
     }
 
     public String getIdentifier() {
