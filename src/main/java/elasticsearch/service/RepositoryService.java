@@ -66,7 +66,7 @@ public class RepositoryService implements Repository{
         SearchResponse response = client.prepareSearch(INDEX)
                 .setTypes(TYPE)
                 .setSearchType(SearchType.DFS_QUERY_THEN_FETCH)
-                .setQuery(QueryBuilders.matchPhraseQuery("id", identifier))
+                .setQuery(QueryBuilders.matchPhraseQuery("identifier", identifier))
                 .execute()
                 .actionGet();
         String EsId = "";
