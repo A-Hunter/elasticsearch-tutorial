@@ -11,7 +11,7 @@ public class Person {
     private String identifier;
     private String firstName;
     private String lastName;
-    private Long age;
+    private int age;
     private String occupation;
     private String address;
 
@@ -21,8 +21,17 @@ public class Person {
         super();
     }
 
-    public Person(Map<String, Object> attributes){
+    public Person(Map<String, Object> attributes) {
         this.attributes = attributes;
+    }
+
+    public Person(String identifier, String firstName, String lastName, int age, String occupation, String address) {
+        this.identifier = identifier;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.occupation = occupation;
+        this.address = address;
     }
 
     public String getIdentifier() {
@@ -49,11 +58,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public Long getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Long age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -75,12 +84,12 @@ public class Person {
 
     public Map<String, Object> asMap() {
         Map<String, Object> personMap = new HashMap<>();
-        personMap.put("identifier",identifier);
-        personMap.put("firstName",firstName);
-        personMap.put("lastName",lastName);
-        personMap.put("age",age);
-        personMap.put("occupation",occupation);
-        personMap.put("address",address);
+        personMap.put("identifier", identifier);
+        personMap.put("firstName", firstName);
+        personMap.put("lastName", lastName);
+        personMap.put("age", age);
+        personMap.put("occupation", occupation);
+        personMap.put("address", address);
         return personMap;
     }
 }

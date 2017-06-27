@@ -11,6 +11,7 @@ import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.transport.client.PreBuiltTransportClient;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -30,9 +31,9 @@ public class RepositoryService implements Repository{
 
     private Client client;
 
-    private static final String INDEX = "profiles";
+    private static final String INDEX = "persons";
 
-    private static final String TYPE = "profile";
+    private static final String TYPE = "person";
 
     private static final String HOST = "localhost";
 
@@ -47,11 +48,11 @@ public class RepositoryService implements Repository{
     }
 
     private Client createClient() {
-        Settings settings = Settings.settingsBuilder()
+        Settings settings = Settings.builder()
                 .put(CLUSTER_NAME, CLUSTER)
                 .build();
         try {
-            return client = TransportClient.builder().settings(settings).build()
+            return client = new PreBuiltTransportClient(settings)
                     .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(HOST), PORT));
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -78,7 +79,6 @@ public class RepositoryService implements Repository{
         return EsId;
     }
 
-    @Override
     public void insert(Person person){
         Client client = createClient();
         Map<String, Object> map = person.asMap();
@@ -87,7 +87,6 @@ public class RepositoryService implements Repository{
         client.close();
     }
 
-    @Override
     public Person get(String modelID) {
 
         Client c = createClient();
@@ -101,7 +100,6 @@ public class RepositoryService implements Repository{
         return person;
     }
 
-    @Override
     public void delete(Person person) {
         Client client = createClient();
         Map<String, Object> map = person.asMap();
@@ -113,7 +111,6 @@ public class RepositoryService implements Repository{
         client.close();
     }
 
-    @Override
     public void update(Person person) {
         Client client = createClient();
         Map<String, Object> map = person.asMap();
@@ -125,7 +122,6 @@ public class RepositoryService implements Repository{
         client.close();
     }
 
-    @Override
     public Collection<Person> search(Map<String, Object> metaData) {
 
         Client c = createClient();
