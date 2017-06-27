@@ -21,10 +21,10 @@ public class Main {
 //        Person p = new Person("id1", "Netero", "Isaac", 125, "Hunter", "Dark continent");
 //        service.update(p);
 
-        Person per = new Person("id2", "Itachi","Uchiha",25,"Shinobi","Konoha");
-        service.delete(per);
-//
-//        Person person = service.get("");
-//        System.out.println(person);
+//        Person per = new Person("id2", "Itachi","Uchiha",25,"Shinobi","Konoha");
+//        service.delete(per);
+
+        Person person = service.get("id5");
+        System.out.println(person.toString());
     }
 }

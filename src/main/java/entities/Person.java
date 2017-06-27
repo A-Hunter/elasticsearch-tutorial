@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -22,7 +23,25 @@ public class Person {
     }
 
     public Person(Map<String, Object> attributes) {
-        this.attributes = attributes;
+        Iterator it = attributes.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            if (pair.getKey().equals("identifier")){
+                this.identifier = (String) pair.getValue();
+            }else if (pair.getKey().equals("firstName")){
+                this.firstName = (String) pair.getValue();
+            }else if (pair.getKey().equals("lastName")){
+                this.lastName = (String) pair.getValue();
+            }else if (pair.getKey().equals("age")){
+                this.age = (int) pair.getValue();
+            }else if (pair.getKey().equals("occupation")){
+                this.occupation = (String) pair.getValue();
+            }else if (pair.getKey().equals("address")){
+                this.address = (String) pair.getValue();
+            }
+
+            it.remove(); // avoids a ConcurrentModificationException
+        }
     }
 
     public Person(String identifier, String firstName, String lastName, int age, String occupation, String address) {
@@ -91,5 +110,17 @@ public class Person {
         personMap.put("occupation", occupation);
         personMap.put("address", address);
         return personMap;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "identifier='" + identifier + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", occupation='" + occupation + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

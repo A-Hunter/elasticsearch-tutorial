@@ -95,8 +95,8 @@ public class RepositoryService implements Repository{
         GetResponse response1 = c.prepareGet(INDEX, TYPE, EsId).get();
         Map<String, Object> mapResult = response1.getSourceAsMap();
         Person person = new Person(mapResult);
-        System.out.println(person.asMap());
         c.close();
+        Map<String, Object> map = person.asMap();
         return person;
     }
 
