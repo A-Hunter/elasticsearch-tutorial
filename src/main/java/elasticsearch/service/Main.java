@@ -18,11 +18,11 @@ public class Main {
 //        service.insert(new Person("id4","Zino","Zoldick",75,"Assassin","Yokohama"));
 //        service.insert(new Person("id5","Kakashi","Hatake",45,"Shinobi","Konoha"));
 //
-        Person p = new Person("id1", "Netero", "Isaac", 125, "Hunter", "Dark continent");
-        service.update(p);
-//
-//        Person per = new Person("id2", "Itachi","Uchiha",25,"Shinobi","Konoha");
-//        service.delete(per);
+//        Person p = new Person("id1", "Netero", "Isaac", 125, "Hunter", "Dark continent");
+//        service.update(p);
+
+        Person per = new Person("id2", "Itachi","Uchiha",25,"Shinobi","Konoha");
+        service.delete(per);
 //
 //        Person person = service.get("");
 //        System.out.println(person);
