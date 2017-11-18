@@ -67,7 +67,7 @@ public class RepoService {
                 .stream()
                 .map(entry -> entry.getKey() + ":" + entry.getValue())
                 .collect(Collectors.joining(","));
-        json.append(String.valueOf(1),result);
+        json.append(String.valueOf(2),result);
         client.prepareIndex(index, type).setSource(json.toString()).get();
         System.out.println(result);
         client.close();
@@ -246,7 +246,7 @@ public class RepoService {
         map.put("age",String.valueOf(15));
         map.put("occupation","Hunter");
         map.put("Address","Konoha");
-       // service.insert(index,type, map);
+        service.insert(index,type, map);
         service.multiGet(index, type, "AV_QP5yc0WVTK0SmXYw3");
     }
 }
